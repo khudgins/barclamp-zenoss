@@ -1,0 +1,26 @@
+{
+  "id": "bc-template-zenoss",
+  "description": "Installation for Zenoss",
+  "attributes": {
+    "zenoss": {
+      "foo": "bar"
+    }
+  },
+  "deployment": {
+    "zenoss": {
+      "crowbar-revision": 0,
+      "elements": {},
+      "element_order": [
+        [ "zenoss-server" ]
+      ],
+      "config": {
+        "environment": "zenoss-base-config",
+        "mode": "full",
+        "transitions": false,
+        "transition_list": [
+        ]
+      }
+    }
+  }
+}
+
