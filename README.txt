@@ -12,7 +12,9 @@ A Barclamp is a module component that implements functionality for Crowbar.  Cor
 About this Zenoss
 -------------------------------------
 
-Information for this barclamp is maintained on the Crowbar Framework Wiki: https://github.com/dellcloudedge/crowbar/wiki
+This barclamp installs Zenoss in your crowbar environment.
+
+This is an early, development prerelease that doesn't do much at the moment.
 
 
 

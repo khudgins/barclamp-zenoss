@@ -31,26 +31,26 @@ barclamp:
   # another barclamp to provide some of its functionality.
   # All barclamps implicitly rely on the crowbar barclamp.
   requires:
-    - another-barclamp # rely on a single other barclamp
-    - @barclamp-group  # rely on another group of barclamps.
+#    - another-barclamp # rely on a single other barclamp
+#    - @barclamp-group  # rely on another group of barclamps.
   # Member allows you to declare that this barclamp is a member
   # of a group of related barclamp.  A barclamp can be a member of 
   # muliple groups, and a group name can be used instead of a barclamp
   # in a requires: clause by prefixing it with an @ sign. 
   member:
-    - barclamp-group
-    - another-barclamp-group
+#    - barclamp-group
+#    - another-barclamp-group
   # Os_support allows you to declare that this barclamp only supports
   # specific operating systems.  If you don't have an os_support
   # section, Crowbar will assume the barclamp works on all the operating
   # systems it supports.  
   os_support:
-    - redhat-5.6
+#    - redhat-5.6
     - ubuntu-10.10
 
 crowbar:
   layout: 1
-  order: 1000
+  order: 100
   proposal_schema_version: 2
 
 nav:
@@ -79,13 +79,15 @@ debs:
   # packages here -- if apt-get install gets all the dependencies, you do not
   # need to list them here.
   pkgs:
+   - ttf-liberation 
+   - ttf-linux-libertine
     # put your packages here
     # - mod_fcgid
   # raw_pkgs is a list of URLs to .deb packages that the build system will try
   # to download and add to the iso.  It does not do dependency checking, and
   # it uses curl to handle the actual download process.
   raw_pkgs:
-    - http://your_site/your_special_deb.deb
+    - http://dev.zenoss.org/deb/dists/main/stable/binary-amd64/zenoss-stack_3.2.1_x64.deb
   # You can have multiple OS specific sections as well.  You can declare
   # dependencies for repos, ppas, pkgs, and raw_pkgs here, and they will
   # be picked up when building Crowbar on that OS. 
@@ -100,17 +102,17 @@ rpms:
   repos:
     # rpm repos allow you to declare that you want to use a repo that
     # is set up using an RPM.  EPEL is a good example of such a repo.
-    - rpm http://repo_addr/repo.rpm
+#    - rpm http://repo_addr/repo.rpm
     # bare allows you to declare that you want to use a repository that
     # does not allow easy installation via rpm.
     # It has a slightly more complex declaration:
     # bare repo_name numeric_repo_priority repo_url
-    - bare epel5-nagios3 10 http://repos.fedorapeople.org/repos/peter/nagios3/epel-5/x86_64/ 
+#    - bare epel5-nagios3 10 http://repos.fedorapeople.org/repos/peter/nagios3/epel-5/x86_64/ 
   pkgs:
     # put your rpms here
     # - httpd
   raw_pkgs:
-    - http://your_site/your_special_rpm.rpm
+#    - http://your_site/your_special_rpm.rpm
     
 # gems allows you to declare the gems you need.
 # Unlike the other package types, you can ask for a specific version of a gem
@@ -120,8 +122,8 @@ rpms:
 gems:
   pkgs:
     # put your gems here.
-    - i18n
-    - rails-2.3.12 # Will try and pull rails-2.3.12 exactly.
+#    - i18n
+#    - rails-2.3.12 # Will try and pull rails-2.3.12 exactly.
 
 # extra_files downloads and saves a file to be slipstreamed on to the 
 # crowbar .iso in the extra/files directory (or a subdirectory thereof).
@@ -130,15 +132,15 @@ gems:
 # .rpm files as if they were provided by raw_pkgs. 
 extra_files:
   # will place file into extra/files
-  - http://some/file
+#  - http://some/file
   # will place file into extra/files/foo
-  - http://some/file foo 
+#  - http://some/file foo 
   # will place image.tar.gz in extra/files/ami.
   # For backwards compatibility, it will also be available at /ami
-  - http://some/amazon/image.tar.gz ami 
+#  - http://some/amazon/image.tar.gz ami 
   # Will download a java package and try to install its RPMS
   # if bulding Crowbar staged on Redhat.
-  - http://java.oracle.com/java-version-x64-rpm.bin java
+#  - http://java.oracle.com/java-version-x64-rpm.bin java
   
 
 locale_additions:
