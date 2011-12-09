@@ -11,7 +11,8 @@
       "crowbar-revision": 0,
       "elements": {},
       "element_order": [
-        [ "zenoss-server" ]
+        [ "zenoss-server",
+          "zenoss-client" ]
       ],
       "config": {
         "environment": "zenoss-base-config",
