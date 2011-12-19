@@ -30,27 +30,22 @@ barclamp:
   # Requires allows you to declare that this barclamp relies on
   # another barclamp to provide some of its functionality.
   # All barclamps implicitly rely on the crowbar barclamp.
-  requires:
-#    - another-barclamp # rely on a single other barclamp
-#    - @barclamp-group  # rely on another group of barclamps.
-  # Member allows you to declare that this barclamp is a member
-  # of a group of related barclamp.  A barclamp can be a member of 
-  # muliple groups, and a group name can be used instead of a barclamp
-  # in a requires: clause by prefixing it with an @ sign. 
-  member:
+#  member:
 #    - barclamp-group
 #    - another-barclamp-group
   # Os_support allows you to declare that this barclamp only supports
   # specific operating systems.  If you don't have an os_support
   # section, Crowbar will assume the barclamp works on all the operating
   # systems it supports.  
-  os_support:
+#  os_support:
 #    - redhat-5.6
-    - ubuntu-10.10
+#    - ubuntu-10.10
 
 crowbar:
   layout: 1
   order: 100
+  run_order: 100
+  chef_order: 1070
   proposal_schema_version: 2
 
 nav:
