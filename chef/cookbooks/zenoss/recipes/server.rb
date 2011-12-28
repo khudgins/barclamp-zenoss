@@ -65,14 +65,14 @@ when "centos","redhat","scientific"
 
   #end redhat/centos/scientific block
 when "debian","ubuntu"
-  include_recipe "apt"
+  #include_recipe "apt"
 
-  apt_repository "zenoss" do
-    uri "http://dev.zenoss.org/deb"
-    distribution "main"
-    components ["stable"]
-    action :add
-  end
+  #apt_repository "zenoss" do
+  #  uri "http://dev.zenoss.org/deb"
+  #  distribution "main"
+  #  components ["stable"]
+  #  action :add
+  #end
 
   packages = %w{ttf-liberation ttf-linux-libertine}
   packages.each do |pkg|
