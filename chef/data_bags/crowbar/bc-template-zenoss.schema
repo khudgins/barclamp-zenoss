@@ -12,17 +12,11 @@
           "type": "map",
           "required": true,
           "mapping": {
-            "server": { 
+            "server": {
               "type": "map",
               "required": true,
               "mapping": {
-                = : {
-                  "type": "map",
-                  "required": true,
-                  "mapping": {
-                    "admin_password": { "type": "str", "required": true }, 
-                  }
-                }
+                = : { "type": "str", "name": "admin_password" }
               }
             }
           }
