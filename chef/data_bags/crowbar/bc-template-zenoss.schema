@@ -20,7 +20,7 @@
                   "type": "map",
                   "required": true,
                   "mapping": {
-                    "password": { "type": "str", "required": true }, 
+                    "admin_password": { "type": "str", "required": true }, 
                   }
                 }
               }
