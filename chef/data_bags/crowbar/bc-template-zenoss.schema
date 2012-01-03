@@ -12,7 +12,19 @@
           "type": "map",
           "required": true,
           "mapping": {
-            "foo": { "type": "str", "required": true }
+            "server": { 
+              "type": "map",
+              "required": true,
+              "mapping": {
+                = : {
+                  "type": "map",
+                  "required": true,
+                  "mapping": {
+                    "password": { "type": "str", "required": true }, 
+                  }
+                }
+              }
+            }
           }
         }
       }

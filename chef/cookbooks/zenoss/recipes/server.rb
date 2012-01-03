@@ -19,11 +19,9 @@
 # limitations under the License.
 #
 
-include_recipe "zenoss::client"
-
 case node[:platform]
 when "centos","redhat","scientific"
-  include_recipe "yum"
+  package "libgcj" #moved here to make CentOS 5.6 happy (COOK-908)
 
   yum_key "RPM-GPG-KEY-zenoss" do
     url "http://dev.zenoss.com/yum/RPM-GPG-KEY-zenoss"
@@ -38,9 +36,9 @@ when "centos","redhat","scientific"
     action :add
   end
 
-  packages = %w{mysql-server net-snmp net-snmp-utils gmp libgomp libgcj liberation-fonts}
+  packages = %w{mysql-server net-snmp net-snmp-utils gmp libgomp liberation-fonts}
   packages.each do |pkg|
-    yum_package pkg do
+    package pkg do
       action :install
     end
   end
@@ -65,14 +63,6 @@ when "centos","redhat","scientific"
 
   #end redhat/centos/scientific block
 when "debian","ubuntu"
-  #include_recipe "apt"
-
-  #apt_repository "zenoss" do
-  #  uri "http://dev.zenoss.org/deb"
-  #  distribution "main"
-  #  components ["stable"]
-  #  action :add
-  #end
 
   packages = %w{ttf-liberation ttf-linux-libertine}
   packages.each do |pkg|
@@ -82,6 +72,8 @@ when "debian","ubuntu"
   end
 
   #Zenoss hasn't signed their repository http://dev.zenoss.org/trac/ticket/7421
+  #This package must be imported into the crowbar server to work. Use the official
+  #tarball if you're not building the barclamp yourself. --Keith
   apt_package "zenoss-stack" do
     version node["zenoss"]["server"]["version"]
     options "--allow-unauthenticated"
@@ -92,10 +84,12 @@ end
 
 
 #apply post 3.2.0 patches from http://dev.zenoss.com/trac/report/6 marked 'closed'
-node["zenoss"]["server"]["zenpatches"].each do |patch, url|
-  zenoss_zenpatch patch do
-    ticket url
-    action :install
+if node['zenoss'] and node['zenoss']['server'] and node['zenoss']['server']['zenpatches']
+  node['zenoss']['server']['zenpatches'].each do |patch, url|
+    zenoss_zenpatch patch do
+      ticket url
+      action :install
+    end
   end
 end
 
@@ -132,6 +126,8 @@ zenoss_zendmd "add users" do
   users admins
   action :users
 end
+
+include_recipe "zenoss::client"
 
 #put public key in an attribute
 ruby_block "zenoss public key" do

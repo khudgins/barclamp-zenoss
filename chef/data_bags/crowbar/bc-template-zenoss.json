@@ -3,7 +3,9 @@
   "description": "Installation for Zenoss",
   "attributes": {
     "zenoss": {
-      "foo": "bar"
+      "server": {
+        "password": "password"
+      }
     }
   },
   "deployment": {
