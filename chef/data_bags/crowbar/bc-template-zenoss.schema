@@ -8,17 +8,11 @@
       "type": "map",
       "required": true,
       "mapping": {
-        "zenoss": {
+        "test": {
           "type": "map",
           "required": true,
           "mapping": {
-            "server": {
-              "type": "map",
-              "required": true,
-              "mapping": {
-                = : { "type": "str", "name": "admin_password" }
-              }
-            }
+            "param1": { "type": "str", "required": true }
           }
         }
       }

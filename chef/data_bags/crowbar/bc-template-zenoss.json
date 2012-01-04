@@ -2,10 +2,8 @@
   "id": "bc-template-zenoss",
   "description": "Installation for Zenoss",
   "attributes": {
-    "zenoss": {
-      "server": {
-        "admin_password": "password"
-      }
+        "test": {
+      "param1": "test"
     }
   },
   "deployment": {
