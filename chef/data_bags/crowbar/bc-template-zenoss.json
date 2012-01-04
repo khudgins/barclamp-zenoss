@@ -2,8 +2,8 @@
   "id": "bc-template-zenoss",
   "description": "Installation for Zenoss",
   "attributes": {
-        "test": {
-      "param1": "test"
+    "zenoss": {
+      "foo": "bar"
     }
   },
   "deployment": {

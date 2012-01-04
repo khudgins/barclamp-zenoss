@@ -8,11 +8,11 @@
       "type": "map",
       "required": true,
       "mapping": {
-        "test": {
+        "zenoss": {
           "type": "map",
           "required": true,
           "mapping": {
-            "param1": { "type": "str", "required": true }
+            "foo": { "type": "str", "required": true }
           }
         }
       }
@@ -28,6 +28,8 @@
             "crowbar-revision": { "type": "int", "required": true },
             "crowbar-committing": { "type": "bool" },
             "crowbar-queued": { "type": "bool" },
+            "crowbar-status": { "type": "str" },
+            "crowbar-failed": { "type": "str" },
             "elements": {
               "type": "map",
               "required": true,
