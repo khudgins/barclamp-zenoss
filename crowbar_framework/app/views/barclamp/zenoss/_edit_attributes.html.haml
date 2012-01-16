@@ -7,4 +7,6 @@
     %p
       %label{ :for => :backing_type }= t('.foo')
       = select_tag :backing_type, options_for_select([['XKCD','xkcd'], ['Dilbert', 'dilbert']], @proposal.raw_data['attributes'][@proposal.barclamp]["foo"]), :onchange => "update_value('foo', 'foo', 'string')"
-
+      %p
+        %label{ :for => :admin_password }= t('.admin-password')
+          %input#admin_password{:type => "text", :name => "admin_password", :'data-default' => @proposal.raw_data['attributes'][@proposal.barclamp]["zenoss"]["admin_password"], :onchange => "update_value('zenoss/admin_password','admin_password', 'string')"}

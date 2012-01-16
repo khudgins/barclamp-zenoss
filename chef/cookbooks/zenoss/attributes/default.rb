@@ -21,7 +21,7 @@
 
 ::Chef::Node.send(:include, Opscode::OpenSSL::Password)
 
-set_unless[:zenoss][:server][:admin_password] = secure_password
+#set_unless[:zenoss][:server][:admin_password] = secure_password
 
 default[:zenoss][:device][:device_class]    = "/Discovered" #overwritten by roles or on nodes
 default[:zenoss][:device][:location]        = "" #overwritten by roles or on nodes
