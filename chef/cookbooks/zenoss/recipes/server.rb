@@ -111,7 +111,7 @@ zenoss_zendmd "skip setup wizard" do
 end
 
 #use zendmd to set the admin password
-Chef::Log "------------#{node[:zenoss][:server][:admin_password]}----------"
+Chef::Log.info "------------#{node[:zenoss][:server][:admin_password]}----------"
 zenoss_zendmd "set admin pass" do
   command "app.acl_users.userManager.updateUserPassword('admin', '#{node[:zenoss][:server][:admin_password]}')"
   action :run
