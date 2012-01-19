@@ -182,7 +182,7 @@ search(:role, "*:*").each do |role|
       #add the role as a Device Class
       Chef::Log.debug "deviceclass from role:#{role.name}:#{role.override_attributes['zenoss']['device']['device_class']}"
       devices[role.override_attributes['zenoss']['device']['device_class']] = {
-        'description' => role.description,
+        'description' => role.description.gsub("\n", " -- "),
         'modeler_plugins' => role.default_attributes['zenoss']['device']['modeler_plugins'],
         'templates' => role.default_attributes['zenoss']['device']['templates'],
         'properties' => role.default_attributes['zenoss']['device']['properties'],
@@ -192,13 +192,13 @@ search(:role, "*:*").each do |role|
       #add the role as a Location
       locations[role.name] = {
         'location' => role.override_attributes['zenoss']['device']['location'],
-        'description' => role.description,
+        'description' => role.description.gsub("\n", " -- "),
         'address' => role.override_attributes['zenoss']['device']['address']
       }
     end
   else
     #create Groups for the rest of the roles
-    groups[role.name] = {'description' => role.description}
+    groups[role.name] = {'description' => role.description.gsub("\n", " -- ")}
   end
 end
 
@@ -210,7 +210,9 @@ nodes.each {|node| systems.push(node.expand!.recipes)}
 systems.flatten!
 systems.uniq!
 #make suborganizers with recipes
-systems.collect! {|sys| sys.gsub('::', '/')}
+systems.collect! {|sys| 
+  sys.gsub('::', '/')
+}
 
 #now that we have Device Classes, Systems, Groups and Locations zenbatchload
 #using the nodes list, write out a zenbatchload
